@@ -70,4 +70,4 @@ diagnose cluster-specific RBAC, repository credentials, CRDs, or admission rules
 
 Note: this simple demo lets Kargo update the live Application's Helm parameter.
 For stricter GitOps/auditing, the next iteration should have Kargo update the
-environment values file on a stage branch, commit it, and promote that commit.
+environment values file on a stage branch, commit it, and promote that commit. 
