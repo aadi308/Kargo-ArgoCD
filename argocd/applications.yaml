@@ -1,0 +1,84 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-dev
+  namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: kargo-demo:dev
+spec:
+  project: kargo-demo
+  source:
+    repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+    targetRevision: main
+    path: helm/demo
+    helm:
+      releaseName: demo
+      valueFiles:
+        - values-dev.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-stage
+  namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: kargo-demo:stage
+spec:
+  project: kargo-demo
+  source:
+    repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+    targetRevision: main
+    path: helm/demo
+    helm:
+      releaseName: demo
+      valueFiles:
+        - values-stage.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-stage
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-prod
+  namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: kargo-demo:prod
+spec:
+  project: kargo-demo
+  source:
+    repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+    targetRevision: main
+    path: helm/demo
+    helm:
+      releaseName: demo
+      valueFiles:
+        - values-prod.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
+

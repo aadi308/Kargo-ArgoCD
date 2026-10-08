@@ -1,0 +1,7 @@
+apiVersion: v2
+name: demo
+description: A small NGINX application used to demonstrate Kargo and Argo CD promotion
+type: application
+version: 0.1.0
+appVersion: "1.27.5"
+

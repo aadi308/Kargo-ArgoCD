@@ -1,0 +1,83 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: dev
+  namespace: kargo-demo
+spec:
+  requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: nginx
+      sources:
+        direct: true
+  promotionTemplate:
+    spec:
+      steps:
+        - uses: argocd-update
+          config:
+            apps:
+              - name: demo-dev
+                namespace: argocd
+                sources:
+                  - repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+                    helm:
+                      images:
+                        - key: image.tag
+                          value: ${{ imageFrom("public.ecr.aws/nginx/nginx").Tag }}
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: stage
+  namespace: kargo-demo
+spec:
+  requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: nginx
+      sources:
+        stages:
+          - dev
+  promotionTemplate:
+    spec:
+      steps:
+        - uses: argocd-update
+          config:
+            apps:
+              - name: demo-stage
+                namespace: argocd
+                sources:
+                  - repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+                    helm:
+                      images:
+                        - key: image.tag
+                          value: ${{ imageFrom("public.ecr.aws/nginx/nginx").Tag }}
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prod
+  namespace: kargo-demo
+spec:
+  requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: nginx
+      sources:
+        stages:
+          - stage
+  promotionTemplate:
+    spec:
+      steps:
+        - uses: argocd-update
+          config:
+            apps:
+              - name: demo-prod
+                namespace: argocd
+                sources:
+                  - repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+                    helm:
+                      images:
+                        - key: image.tag
+                          value: ${{ imageFrom("public.ecr.aws/nginx/nginx").Tag }}
+
