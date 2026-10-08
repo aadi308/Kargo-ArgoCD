@@ -6,11 +6,10 @@ metadata:
 spec:
   description: Kargo-managed demo environments
   sourceRepos:
-    - https://github.com/<YOUR_ORG>/Kargo-argocd.git
+    - https://github.com/aadi308/Kargo-ArgoCD.git
   destinations:
     - namespace: demo-*
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
     - group: ""
       kind: Namespace
-

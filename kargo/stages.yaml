@@ -19,7 +19,7 @@ spec:
               - name: demo-dev
                 namespace: argocd
                 sources:
-                  - repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+                  - repoURL: https://github.com/aadi308/Kargo-ArgoCD.git
                     helm:
                       images:
                         - key: image.tag
@@ -47,7 +47,7 @@ spec:
               - name: demo-stage
                 namespace: argocd
                 sources:
-                  - repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+                  - repoURL: https://github.com/aadi308/Kargo-ArgoCD.git
                     helm:
                       images:
                         - key: image.tag
@@ -75,9 +75,8 @@ spec:
               - name: demo-prod
                 namespace: argocd
                 sources:
-                  - repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+                  - repoURL: https://github.com/aadi308/Kargo-ArgoCD.git
                     helm:
                       images:
                         - key: image.tag
                           value: ${{ imageFrom("public.ecr.aws/nginx/nginx").Tag }}
-

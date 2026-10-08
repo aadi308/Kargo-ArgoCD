@@ -8,7 +8,7 @@ metadata:
 spec:
   project: kargo-demo
   source:
-    repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+    repoURL: https://github.com/aadi308/Kargo-ArgoCD.git
     targetRevision: main
     path: helm/demo
     helm:
@@ -36,7 +36,7 @@ metadata:
 spec:
   project: kargo-demo
   source:
-    repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+    repoURL: https://github.com/aadi308/Kargo-ArgoCD.git
     targetRevision: main
     path: helm/demo
     helm:
@@ -64,7 +64,7 @@ metadata:
 spec:
   project: kargo-demo
   source:
-    repoURL: https://github.com/<YOUR_ORG>/Kargo-argocd.git
+    repoURL: https://github.com/aadi308/Kargo-ArgoCD.git
     targetRevision: main
     path: helm/demo
     helm:
@@ -81,4 +81,3 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - PruneLast=true
-

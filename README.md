@@ -12,9 +12,9 @@ three Argo CD Applications.
 
 ## Configure
 
-Replace `https://github.com/YOUR_ORG/Kargo-argocd.git` in `argocd/*.yaml` and
-`kargo/*.yaml` with this repository's real clone URL. The URL must be identical
-in both places because Kargo uses it to select the Argo CD source to update.
+The configured source is `https://github.com/aadi308/Kargo-ArgoCD.git`. Keep the
+URL identical in `argocd/*.yaml` and `kargo/*.yaml` because Kargo uses it to
+select the Argo CD source to update.
 
 Argo CD and Kargo (including their CRDs) must already be installed. For a private
 repository, configure repository credentials independently in Argo CD. This demo
